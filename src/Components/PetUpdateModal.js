@@ -4,13 +4,8 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import petStore from "../petStore";
 
-const PetCreateModal = (props) => {
-  const initialAnimalState = {
-    name: "",
-    type: "Cat",
-    image: "",
-  };
-  const [animal, setAnimal] = useState(initialAnimalState);
+const PetUpdateModal = (props) => {
+  const [animal, setAnimal] = useState({ ...props.pet });
 
   const handleForm = (event) => {
     setAnimal({ ...animal, [event.target.name]: event.target.value });
@@ -18,8 +13,7 @@ const PetCreateModal = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    petStore.addPet(animal);
-    setAnimal(initialAnimalState);
+    petStore.updatePet(animal);
     props.setModalShow(false);
   };
 
@@ -76,4 +70,4 @@ const PetCreateModal = (props) => {
   );
 };
 
-export default PetCreateModal;
+export default PetUpdateModal;

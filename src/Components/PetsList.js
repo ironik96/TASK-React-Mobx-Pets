@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import petStore from "../petStore";
 import PetItem from "./PetItem";
 import Button from "react-bootstrap/Button";
@@ -10,7 +10,7 @@ import Selector from "./Selector";
 function PetsList() {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("");
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const pets = petStore.pets;
 
   const petList = pets
@@ -46,7 +46,11 @@ function PetsList() {
           <div class="row justify-content-center">{petList}</div>
         </div>
       </section>
-      <PetCreateModal show={modalShow} onHide={() => setModalShow(false)} />
+      <PetCreateModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        setModalShow={setModalShow}
+      />
     </>
   );
 }
