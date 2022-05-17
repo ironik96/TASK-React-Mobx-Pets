@@ -4,6 +4,8 @@ import petStore from "../petStore";
 import PetItem from "./PetItem";
 import Button from "react-bootstrap/Button";
 import PetCreateModal from "./PetCreateModal";
+import SearchBar from "./SearchBar";
+import Selector from "./Selector";
 
 function PetsList() {
   const [query, setQuery] = useState("");
@@ -29,33 +31,10 @@ function PetsList() {
                 <h1 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
                   Fur-ends
                 </h1>
-                <div class="input-group rounded">
-                  <input
-                    type="search"
-                    class="form-control rounded"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="search-addon"
-                    onChange={(e) => setQuery(e.target.value)}
-                  />
-                </div>
+                <SearchBar setQuery={setQuery} />
                 <br />
                 <div className="type-and-add">
-                  <div>
-                    Type:
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                      onChange={(e) => setType(e.target.value)}
-                    >
-                      <option value="" selected>
-                        All
-                      </option>
-                      <option value="Cat">Cat</option>
-                      <option value="Dog">Dog</option>
-                      <option value="Rabbit">Rabbit</option>
-                    </select>
-                  </div>
+                  <Selector setType={setType} />
                   <Button variant="primary" onClick={() => setModalShow(true)}>
                     Add
                   </Button>
